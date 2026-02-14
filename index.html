@@ -1,454 +1,725 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Channel Islands Painting | Santa Barbara</title>
-  <meta name="description" content="Interior & exterior painting, cabinet refinishing, and rental turnovers in Santa Barbara, Goleta, Carpinteria, Montecito, and Ventura." />
+  <title>Channel Islands Painting | Santa Barbara • Goleta • Carpinteria • Montecito • Ventura</title>
+  <meta name="description" content="Channel Islands Painting — Interior & exterior painting, cabinet refinishing, prep/patch/texture matching, and rental turnovers in Santa Barbara, Goleta, Carpinteria, Montecito, and Ventura." />
 
   <style>
     :root{
       --red:#c8102e;
-      --red2:#a10d24;
-      --ink:#0b0f19;
-      --muted:#64748b;
-      --bg:#0a0d12;
-      --card:#0f1622;
-      --border:rgba(255,255,255,.10);
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --redDark:#9f0d23;
+      --ink:#0e0f12;
+      --muted:#5b616b;
+      --card:#ffffff;
+      --bg:#f6f7f9;
+      --line:rgba(10,12,16,.10);
+      --shadow: 0 18px 50px rgba(0,0,0,.10);
       --radius:18px;
       --max:1100px;
     }
-    *{box-sizing:border-box}
-    html,body{margin:0; padding:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; color:#fff; background:#070a10}
-    a{color:inherit}
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
-    .nav{
-      position:sticky; top:0; z-index:50;
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(180deg,#ffffff 0%, var(--bg) 55%, #ffffff 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+    a{ color:inherit; }
+    img{ max-width:100%; display:block; }
+
+    .container{ width:min(var(--max), 92vw); margin:0 auto; }
+
+    /* Top bar */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.82);
       backdrop-filter: blur(12px);
-      background: rgba(7,10,16,.65);
-      border-bottom:1px solid var(--border);
+      border-bottom:1px solid var(--line);
     }
-    .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 0}
-    .brand{display:flex; align-items:center; gap:12px; min-width:0}
-    .brand img{height:34px; width:auto; border-radius:8px; box-shadow: 0 10px 30px rgba(0,0,0,.25)}
-    .brand .name{font-weight:800; letter-spacing:.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-    .pill{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
-      font-size:14px; color:rgba(255,255,255,.9)
-    }
-    .pill a{
-      text-decoration:none; padding:9px 12px; border:1px solid var(--border);
-      border-radius:999px; background: rgba(255,255,255,.04)
-    }
-    .pill a.primary{
-      background: linear-gradient(135deg, var(--red), var(--red2));
-      border-color: rgba(255,255,255,.18);
-      box-shadow: 0 14px 30px rgba(200,16,46,.25);
-      font-weight:700;
-    }
-
-    /* HERO */
-    .hero{
-      padding:56px 0 28px;
-      background:
-        radial-gradient(900px 500px at 15% 10%, rgba(200,16,46,.30), transparent 60%),
-        radial-gradient(900px 500px at 85% 15%, rgba(255,255,255,.06), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.03), transparent 40%);
-    }
-    .hero-grid{
-      display:grid; grid-template-columns: 1.1fr .9fr; gap:22px; align-items:stretch;
-    }
-    @media (max-width: 900px){ .hero-grid{grid-template-columns:1fr; } }
-
-    .hero-card{
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .hero-left{padding:28px}
-    .kicker{display:inline-flex; gap:10px; align-items:center; font-size:13px; color:rgba(255,255,255,.85); border:1px solid var(--border); padding:7px 10px; border-radius:999px; background: rgba(255,255,255,.04)}
-    .dot{width:8px; height:8px; border-radius:50%; background: var(--red); box-shadow: 0 0 0 6px rgba(200,16,46,.12)}
-    h1{margin:14px 0 10px; font-size:44px; line-height:1.05; letter-spacing:-.6px}
-    @media (max-width: 520px){ h1{font-size:36px} }
-    .sub{margin:0; color:rgba(255,255,255,.82); font-size:16px; line-height:1.55; max-width:60ch}
-    .actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:12px 14px; border-radius:12px; border:1px solid var(--border);
-      text-decoration:none; background: rgba(255,255,255,.04);
-      font-weight:700;
-    }
-    .btn.primary{
-      background: linear-gradient(135deg, var(--red), var(--red2));
-      border-color: rgba(255,255,255,.18);
-      box-shadow: 0 18px 40px rgba(200,16,46,.25);
-    }
-    .btn span{opacity:.9}
-    .meta-row{
-      display:grid; grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:10px; margin-top:18px;
-    }
-    @media (max-width: 520px){ .meta-row{grid-template-columns:1fr} }
-    .mini{
-      padding:12px; border-radius:14px; border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-    }
-    .mini b{display:block; font-size:14px}
-    .mini small{display:block; margin-top:4px; color:rgba(255,255,255,.72); line-height:1.35}
-
-    /* HERO RIGHT “PHOTO” */
-    .hero-right{
-      position:relative;
-      min-height: 340px;
-      display:flex; align-items:stretch;
-      background: radial-gradient(900px 500px at 20% 20%, rgba(200,16,46,.25), transparent 55%),
-                  linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-    }
-    .hero-right .img{
-      width:100%;
-      background:
-        linear-gradient(120deg, rgba(200,16,46,.22), transparent 45%),
-        url("https://images.unsplash.com/photo-1523419409543-a5e549c1faa1?auto=format&fit=crop&w=1600&q=80");
-      background-size: cover;
-      background-position:center;
-      filter: saturate(1.05) contrast(1.02);
-    }
-    .badge{
-      position:absolute; left:16px; top:16px;
-      background: rgba(7,10,16,.70);
-      border:1px solid var(--border);
-      border-radius: 14px;
-      padding:10px 12px;
-      backdrop-filter: blur(10px);
-      max-width: 90%;
-    }
-    .badge b{display:block; font-size:14px}
-    .badge small{display:block; margin-top:2px; color:rgba(255,255,255,.72)}
-    .badge2{
-      position:absolute; right:16px; bottom:16px;
-      background: rgba(7,10,16,.72);
-      border:1px solid var(--border);
-      border-radius: 14px;
-      padding:10px 12px;
-      backdrop-filter: blur(10px);
-      text-align:right;
-    }
-    .badge2 b{display:block; font-size:14px}
-    .badge2 small{display:block; margin-top:2px; color:rgba(255,255,255,.72)}
-
-    /* SECTIONS */
-    section{padding:26px 0}
-    .section-title{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-bottom:14px;
-    }
-    h2{margin:0; font-size:26px; letter-spacing:-.3px}
-    .hint{color:rgba(255,255,255,.72); font-size:14px}
-
-    .grid{
-      display:grid; grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-    @media (max-width: 900px){ .grid{grid-template-columns:1fr 1fr} }
-    @media (max-width: 560px){ .grid{grid-template-columns:1fr} }
-    .card{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      padding:16px;
-      box-shadow: 0 14px 40px rgba(0,0,0,.25);
-    }
-    .card .top{
-      display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px;
-    }
-    .tag{
-      font-size:12px; padding:6px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      color:rgba(255,255,255,.82);
-    }
-    .icon{
-      width:38px; height:38px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(200,16,46,.35), rgba(255,255,255,.06));
-      border:1px solid rgba(255,255,255,.14);
-      display:grid; place-items:center; font-weight:900;
-    }
-    .card h3{margin:0 0 6px; font-size:18px}
-    .card p{margin:0; color:rgba(255,255,255,.74); line-height:1.5; font-size:14px}
-
-    /* PROCESS */
-    .process{
-      display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px;
-    }
-    @media (max-width: 900px){ .process{grid-template-columns:1fr} }
-    .step{
-      border:1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border-radius: var(--radius);
-      padding:16px;
-    }
-    .step b{display:flex; align-items:center; gap:10px; font-size:16px}
-    .num{
-      width:26px; height:26px; border-radius:10px;
-      background: linear-gradient(135deg, var(--red), var(--red2));
-      display:grid; place-items:center; font-weight:900;
-    }
-    .step p{margin:10px 0 0; color:rgba(255,255,255,.74); font-size:14px; line-height:1.5}
-
-    /* CTA */
-    .cta{
-      border:1px solid rgba(255,255,255,.14);
-      border-radius: 22px;
-      background:
-        radial-gradient(700px 350px at 15% 20%, rgba(200,16,46,.32), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .cta-inner{display:grid; grid-template-columns:1.1fr .9fr; gap:18px; padding:20px}
-    @media (max-width: 900px){ .cta-inner{grid-template-columns:1fr} }
-    .cta h2{font-size:28px}
-    .cta p{margin:8px 0 0; color:rgba(255,255,255,.78); line-height:1.6}
-    .cta-box{
-      border:1px solid rgba(255,255,255,.14);
-      border-radius: 18px;
-      background: rgba(7,10,16,.55);
-      padding:14px;
-    }
-    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
-    .line{
-      display:flex; align-items:center; justify-content:space-between;
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 0;
       gap:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+    .brand img{
+      width:40px;
+      height:40px;
+      object-fit:cover;
+      border-radius:10px;
+      box-shadow: 0 10px 22px rgba(0,0,0,.12);
+    }
+    .brand .name{
+      display:flex;
+      flex-direction:column;
+      line-height:1.1;
+      min-width:0;
+    }
+    .brand .name strong{
+      font-size:14px;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .brand .name span{
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .ctaRow{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end; }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
       text-decoration:none;
-    }
-    .line small{color:rgba(255,255,255,.70)}
-    .line b{font-size:14px}
-    .line:hover{border-color: rgba(255,255,255,.22)}
-    footer{
-      padding:22px 0 32px;
-      color:rgba(255,255,255,.65);
-      border-top:1px solid var(--border);
-      margin-top:22px;
+      font-weight:700;
       font-size:13px;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
     }
-    .fine{display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
-    .fine span{opacity:.9}
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 14px 30px rgba(0,0,0,.12); }
+    .btnPrimary{
+      background:linear-gradient(180deg,var(--red) 0%, var(--redDark) 100%);
+      color:#fff;
+      border-color: rgba(200,16,46,.45);
+    }
+    .btnPrimary:hover{ border-color: rgba(200,16,46,.75); }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(200,16,46,.08);
+      border:1px solid rgba(200,16,46,.18);
+      color:var(--redDark);
+      font-weight:800;
+      font-size:12px;
+      letter-spacing:.25px;
+      white-space:nowrap;
+    }
+
+    /* Hero */
+    .hero{
+      position:relative;
+      padding:44px 0 10px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .heroGrid{ grid-template-columns:1fr; }
+      .ctaRow{ justify-content:flex-start; }
+    }
+
+    .heroCard{
+      border-radius: var(--radius);
+      background: #fff;
+      border:1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .heroText{
+      padding:22px 20px 18px;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size:34px;
+      letter-spacing:-.5px;
+      line-height:1.05;
+    }
+    @media (max-width: 420px){
+      h1{ font-size:30px; }
+    }
+    .sub{
+      margin:0 0 16px;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.45;
+    }
+    .heroBadges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 10px 0 18px;
+    }
+    .mini{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.4;
+      margin-top:10px;
+    }
+    .splitCTA{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+    }
+
+    .heroPhoto{
+      min-height: 340px;
+      display:grid;
+      grid-template-rows: 1fr;
+      position:relative;
+    }
+    .heroPhoto .img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform: scale(1.02);
+      filter: contrast(1.02) saturate(1.03);
+    }
+    .overlay{
+      position:absolute; inset:0;
+      background: radial-gradient(1200px 420px at 20% 10%, rgba(200,16,46,.25) 0%, rgba(0,0,0,0) 55%),
+                  linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.55) 100%);
+      pointer-events:none;
+    }
+    .heroStamp{
+      position:absolute;
+      left:14px;
+      bottom:14px;
+      right:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      color:#fff;
+    }
+    .heroStamp .kicker{
+      font-weight:900;
+      letter-spacing:.35px;
+    }
+    .heroStamp .small{
+      font-size:12px;
+      opacity:.9;
+    }
+
+    /* Sections */
+    section{ padding: 24px 0; }
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      margin: 8px 0 14px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size:22px;
+      letter-spacing:-.2px;
+    }
+    .sectionTitle p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.3;
+    }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+    }
+    @media (max-width: 900px){
+      .grid2{ grid-template-columns:1fr; }
+    }
+
+    .card{
+      border-radius: var(--radius);
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow: 0 12px 34px rgba(0,0,0,.08);
+      overflow:hidden;
+    }
+
+    .cardPad{ padding:18px; }
+
+    .feature{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:0;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .feature{ grid-template-columns:1fr; }
+    }
+    .feature .photo{
+      min-height: 260px;
+      position:relative;
+      background:#000;
+    }
+    .feature .photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .feature .photo::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(90deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 55%);
+      pointer-events:none;
+    }
+    @media (max-width: 900px){
+      .feature .photo::after{
+        background: linear-gradient(180deg, rgba(0,0,0,.20) 0%, rgba(0,0,0,0) 55%);
+      }
+    }
+
+    .feature .content{
+      padding:18px;
+    }
+    .lead{
+      font-weight:900;
+      letter-spacing:.2px;
+      margin:0 0 8px;
+      font-size:16px;
+    }
+    .content p{
+      margin:0 0 12px;
+      color:var(--muted);
+      line-height:1.45;
+      font-size:14px;
+    }
+
+    .services{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:10px;
+      margin-top:10px;
+    }
+    @media (max-width: 560px){
+      .services{ grid-template-columns:1fr; }
+    }
+    .svc{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px 12px;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      background: linear-gradient(180deg, #fff 0%, #fbfbfc 100%);
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:999px;
+      background: var(--red);
+      margin-top:5px;
+      box-shadow: 0 10px 18px rgba(200,16,46,.25);
+      flex:0 0 auto;
+    }
+    .svc strong{ display:block; font-size:13px; }
+    .svc span{ display:block; font-size:12px; color:var(--muted); margin-top:2px; line-height:1.35; }
+
+    /* Contact */
+    .contact{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .contact{ grid-template-columns:1fr; }
+    }
+    .contactCard{
+      padding:18px;
+    }
+    .contactLine{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+    }
+    .contactNote{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    /* Inline photos (no gallery) */
+    .photoStrip{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:10px;
+      margin-top:12px;
+    }
+    @media (max-width: 900px){
+      .photoStrip{ grid-template-columns: 1fr; }
+    }
+    .photoTile{
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:#fff;
+      min-height: 220px;
+      position:relative;
+    }
+    .photoTile img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform: scale(1.02);
+      transition: transform .5s ease;
+    }
+    .photoTile:hover img{ transform: scale(1.06); }
+    .photoTile .tag{
+      position:absolute;
+      left:10px;
+      bottom:10px;
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,.6);
+      font-weight:900;
+      font-size:12px;
+    }
+
+    /* Footer */
+    footer{
+      padding: 24px 0 36px;
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
+    }
+    footer strong{ color:var(--ink); }
+
+    /* Scroll reveal animation */
+    .reveal{ opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.show{ opacity:1; transform: translateY(0); }
+
+    /* Small utility */
+    .hr{
+      height:1px;
+      background: var(--line);
+      margin: 14px 0;
+    }
   </style>
 </head>
 
 <body>
-
   <!-- TOP BAR -->
-  <div class="nav">
-    <div class="wrap nav-inner">
-      <div class="brand">
-        <!-- Put your uploaded file name here (you already uploaded: logo.PNG) -->
-        <img src="logo.PNG" alt="Channel Islands Painting logo" onerror="this.style.display='none'">
-        <div class="name">Channel Islands Painting</div>
-      </div>
-      <div class="pill">
-        <a class="primary" href="tel:+18058951235">Call (805) 895-1235</a>
-        <a href="mailto:lmfpaint@gmail.com">Email lmfpaint@gmail.com</a>
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-inner">
+        <div class="brand">
+          <img src="logo.PNG" alt="Channel Islands Painting logo" />
+          <div class="name">
+            <strong>Channel Islands Painting</strong>
+            <span>Santa Barbara • Goleta • Carpinteria • Montecito • Ventura</span>
+          </div>
+        </div>
+
+        <div class="ctaRow">
+          <span class="pill">Licensed • Insured • Clean Work</span>
+          <a class="btn" href="mailto:lmfpaint@gmail.com">Email</a>
+          <a class="btn btnPrimary" href="tel:+18058951235">Call (805) 895-1235</a>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- HERO -->
-  <div class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-card hero-left">
-        <div class="kicker"><span class="dot"></span><span>Santa Barbara County • Ventura County</span></div>
-        <h1>Clean, professional painting that makes your property look expensive.</h1>
-        <p class="sub">
-          Interior & exterior painting, cabinet refinishing, prep/patch/texture matching, and rental turnovers.
-          Serving <b>Santa Barbara</b>, <b>Goleta</b>, <b>Carpinteria</b>, <b>Montecito</b>, and <b>Ventura</b>.
-        </p>
+  <header class="hero">
+    <div class="container">
+      <div class="heroGrid">
+        <div class="heroCard reveal">
+          <div class="heroText">
+            <h1>Painter & Contractor-Style Work.<br/>Clean lines. Solid prep. No drama.</h1>
+            <p class="sub">
+              Interior & exterior painting, cabinets, and high-touch prep for homes and rentals.
+              Built for the Santa Barbara area — quick turnaround, tight masking, and consistent finishes.
+            </p>
 
-        <div class="actions">
-          <a class="btn primary" href="mailto:lmfpaint@gmail.com?subject=Quote%20Request%20-%20Channel%20Islands%20Painting&body=Hi%20-%20Please%20quote%20my%20project.%0A%0AAddress%3A%0AScope%3A%0ATimeline%3A%0APhotos%20link%20(optional)%3A%0A%0AThanks!">Email for a quote</a>
-          <a class="btn" href="tel:+18058951235"><span>Call now</span></a>
-        </div>
+            <div class="heroBadges">
+              <span class="pill">Prep / Patch / Texture Match</span>
+              <span class="pill">Cabinet Refinishing</span>
+              <span class="pill">Rental Turnovers</span>
+            </div>
 
-        <div class="meta-row">
-          <div class="mini">
-            <b>Fast estimates</b>
-            <small>Send photos + address. We’ll reply with next steps.</small>
-          </div>
-          <div class="mini">
-            <b>Clean prep</b>
-            <small>Protection, patching, caulking, and sharp lines.</small>
-          </div>
-          <div class="mini">
-            <b>Property-ready</b>
-            <small>Turnovers and refreshes that rent or sell faster.</small>
+            <div class="splitCTA">
+              <a class="btn btnPrimary" href="tel:+18058951235">Tap to Call Now</a>
+              <a class="btn" href="mailto:lmfpaint@gmail.com?subject=Quote%20Request%20-%20Channel%20Islands%20Painting&body=Hi%20Channel%20Islands%20Painting%2C%0A%0AAddress%3A%0AProject%20type%20(interior%2Fexterior%2Fcabinets%2Frental)%3A%0ATimeline%3A%0APhotos%20attached%3A%20Yes%2FNo%0A%0AThanks!">Request Quote by Email</a>
+            </div>
+
+            <div class="mini">
+              Tip: Email a few photos + what rooms/areas you want painted for the fastest estimate.
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="hero-card hero-right">
-        <div class="img" aria-label="Paint crew image"></div>
-        <div class="badge">
-          <b>Interior • Exterior • Cabinets</b>
-          <small>High-end finishes, durable coatings, clean work.</small>
-        </div>
-        <div class="badge2">
-          <b>Serving</b>
-          <small>SB • Goleta • Carp • Montecito • Ventura</small>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SERVICES -->
-  <section>
-    <div class="wrap">
-      <div class="section-title">
-        <h2>Services</h2>
-        <div class="hint">Simple, focused, painting-only.</div>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <div class="top">
-            <div class="icon">I</div>
-            <span class="tag">Interiors</span>
+        <div class="heroCard heroPhoto reveal" aria-label="Project photo">
+          <!-- Pick a strong “hero” image here -->
+          <img class="img" src="IMG_2622.jpeg" alt="Channel Islands Painting project photo" />
+          <div class="overlay"></div>
+          <div class="heroStamp">
+            <div>
+              <div class="kicker">Serving the Central Coast</div>
+              <div class="small">Santa Barbara • Goleta • Carpinteria • Montecito • Ventura</div>
+            </div>
+            <a class="btn btnPrimary" style="padding:10px 14px;" href="tel:+18058951235">Call</a>
           </div>
-          <h3>Interior Painting</h3>
-          <p>Walls, ceilings, trim, doors, baseboards. Clean cut lines and durable finishes.</p>
-        </div>
-
-        <div class="card">
-          <div class="top">
-            <div class="icon">E</div>
-            <span class="tag">Exteriors</span>
-          </div>
-          <h3>Exterior Painting</h3>
-          <p>Siding, stucco, fascia, trim. Prep-first approach for long-lasting results.</p>
-        </div>
-
-        <div class="card">
-          <div class="top">
-            <div class="icon">C</div>
-            <span class="tag">Refinishing</span>
-          </div>
-          <h3>Cabinet Refinishing</h3>
-          <p>Kitchen & bath cabinets. Smooth finishes with proper sanding, prime, and topcoats.</p>
-        </div>
-
-        <div class="card">
-          <div class="top">
-            <div class="icon">P</div>
-            <span class="tag">Prep</span>
-          </div>
-          <h3>Prep, Patching & Texture</h3>
-          <p>Drywall patching, caulking, crack repair, texture matching, and surface prep.</p>
-        </div>
-
-        <div class="card">
-          <div class="top">
-            <div class="icon">R</div>
-            <span class="tag">Rentals</span>
-          </div>
-          <h3>Rental Turnovers</h3>
-          <p>Fast refreshes that look sharp: touch-ups, full paints, trim resets, clean finish.</p>
-        </div>
-
-        <div class="card">
-          <div class="top">
-            <div class="icon">F</div>
-            <span class="tag">Details</span>
-          </div>
-          <h3>Trim & Detail Work</h3>
-          <p>Baseboards, doors, casing, accent walls. Crisp edges and consistent sheen.</p>
         </div>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- PROCESS -->
+  <!-- SECTION: WHAT WE DO -->
   <section>
-    <div class="wrap">
-      <div class="section-title">
-        <h2>How it works</h2>
-        <div class="hint">3 steps. No fluff.</div>
+    <div class="container">
+      <div class="sectionTitle reveal">
+        <h2>Services (what we actually do)</h2>
+        <p>Simple, contractor-style scope. No fluff.</p>
       </div>
 
-      <div class="process">
-        <div class="step">
-          <b><span class="num">1</span> Send details</b>
-          <p>Text/call or email photos + address + timeline. We’ll confirm scope quickly.</p>
+      <div class="card cardPad reveal">
+        <div class="services">
+          <div class="svc">
+            <div class="dot"></div>
+            <div>
+              <strong>Interior Painting</strong>
+              <span>Walls, ceilings, trim, doors — clean cut lines and durable finishes.</span>
+            </div>
+          </div>
+          <div class="svc">
+            <div class="dot"></div>
+            <div>
+              <strong>Exterior Painting</strong>
+              <span>Proper prep, caulking, and coatings that hold up to the coast.</span>
+            </div>
+          </div>
+          <div class="svc">
+            <div class="dot"></div>
+            <div>
+              <strong>Cabinet Refinishing</strong>
+              <span>Degrease, sand, prime, spray/roll finish — smooth and tough.</span>
+            </div>
+          </div>
+          <div class="svc">
+            <div class="dot"></div>
+            <div>
+              <strong>Prep / Patch / Texture Matching</strong>
+              <span>Patch, sand, blend, match orange peel / knockdown as needed.</span>
+            </div>
+          </div>
+          <div class="svc">
+            <div class="dot"></div>
+            <div>
+              <strong>Rental Turnovers</strong>
+              <span>Fast, clean, repeatable — walls, baseboards, doors, touch-ups.</span>
+            </div>
+          </div>
+          <div class="svc">
+            <div class="dot"></div>
+            <div>
+              <strong>Trim, Doors, Baseboards</strong>
+              <span>Repaint, repair, caulk lines, and detail work that looks finished.</span>
+            </div>
+          </div>
         </div>
-        <div class="step">
-          <b><span class="num">2</span> Clear estimate</b>
-          <p>You get a simple, written estimate and start date options based on availability.</p>
+      </div>
+
+      <!-- inline photos (not a gallery) -->
+      <div class="photoStrip reveal">
+        <div class="photoTile">
+          <img src="IMG_1357.jpeg" alt="Interior painting work photo" />
+          <div class="tag">Interior</div>
         </div>
-        <div class="step">
-          <b><span class="num">3</span> Clean execution</b>
-          <p>Protection, prep, paint, final walkthrough. Your place looks dialed.</p>
+        <div class="photoTile">
+          <img src="IMG_1399.jpeg" alt="Prep and patching work photo" />
+          <div class="tag">Prep / Patch</div>
+        </div>
+        <div class="photoTile">
+          <img src="IMG_4579.jpeg" alt="Finish detail work photo" />
+          <div class="tag">Finish</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA / CONTACT -->
+  <!-- SECTION: HOW WE WORK -->
   <section>
-    <div class="wrap cta">
-      <div class="cta-inner">
-        <div>
-          <h2>Get a quote</h2>
+    <div class="container">
+      <div class="sectionTitle reveal">
+        <h2>How the job runs</h2>
+        <p>What you should expect on a real paint job.</p>
+      </div>
+
+      <div class="card feature reveal">
+        <div class="photo">
+          <img src="IMG_4653.jpeg" alt="Project photo" />
+        </div>
+        <div class="content">
+          <div class="lead">1) Prep first (always)</div>
           <p>
-            Fastest way: email photos and your address. If you want to talk it through, call.
+            Masking, protection, patching, sanding, caulking — this is where the final look is decided.
+            We focus on straight lines, clean edges, and surfaces that feel even.
           </p>
-          <div class="row" style="margin-top:14px;">
-            <a class="btn primary" href="tel:+18058951235">Call (805) 895-1235</a>
+
+          <div class="lead">2) Prime where it matters</div>
+          <p>
+            Stains, repairs, glossy surfaces, cabinets — we use the right primer so the finish coats bond and last.
+          </p>
+
+          <div class="lead">3) Clean finish + clean site</div>
+          <p>
+            We keep the site organized and leave it clean. The goal is a finish you notice — not a mess you remember.
+          </p>
+
+          <div class="hr"></div>
+
+          <div class="contactLine">
+            <a class="btn btnPrimary" href="tel:+18058951235">Call (805) 895-1235</a>
             <a class="btn" href="mailto:lmfpaint@gmail.com">Email lmfpaint@gmail.com</a>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="cta-box">
-          <a class="line" href="tel:+18058951235">
-            <div>
-              <small>Phone</small>
-              <b>(805) 895-1235</b>
+  <!-- SECTION: MORE PROJECT PHOTOS (embedded through page) -->
+  <section>
+    <div class="container">
+      <div class="sectionTitle reveal">
+        <h2>Real work (embedded, not a gallery)</h2>
+        <p>Photos placed where they make sense.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card reveal" style="overflow:hidden;">
+          <div style="padding:16px 16px 0;">
+            <div class="pill">Cabinets / Detailed Finishes</div>
+            <h3 style="margin:10px 0 10px; font-size:18px; letter-spacing:-.2px;">Smooth, durable finishes</h3>
+            <p style="margin:0 0 14px; color:var(--muted); font-size:14px; line-height:1.45;">
+              Cabinet work and detail areas need proper prep, bonding primer, and controlled application.
+            </p>
+          </div>
+          <img src="IMG_4657.jpeg" alt="Cabinet or detailed finish photo" style="width:100%; height:320px; object-fit:cover;">
+        </div>
+
+        <div class="card reveal" style="overflow:hidden;">
+          <div style="padding:16px 16px 0;">
+            <div class="pill">Exterior / Coastal Conditions</div>
+            <h3 style="margin:10px 0 10px; font-size:18px; letter-spacing:-.2px;">Built for the coast</h3>
+            <p style="margin:0 0 14px; color:var(--muted); font-size:14px; line-height:1.45;">
+              Proper prep, caulking, and coatings that hold up in Santa Barbara + Ventura weather.
+            </p>
+          </div>
+          <img src="IMG_4678.jpeg" alt="Exterior painting photo" style="width:100%; height:320px; object-fit:cover;">
+        </div>
+      </div>
+
+      <div class="photoStrip reveal" style="margin-top:18px;">
+        <div class="photoTile">
+          <img src="IMG_4776.jpeg" alt="Project photo" />
+          <div class="tag">Details</div>
+        </div>
+        <div class="photoTile">
+          <img src="IMG_4850.jpeg" alt="Project photo" />
+          <div class="tag">Clean Lines</div>
+        </div>
+        <div class="photoTile">
+          <img src="IMG_5629.jpeg" alt="Project photo" />
+          <div class="tag">Turnovers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+    <div class="container">
+      <div class="sectionTitle reveal">
+        <h2>Get a fast quote</h2>
+        <p>Call or email — both are one tap.</p>
+      </div>
+
+      <div class="card contact reveal">
+        <div class="contactCard">
+          <div class="pill">Fast estimate</div>
+          <h3 style="margin:10px 0 8px; font-size:20px; letter-spacing:-.2px;">Send photos + address</h3>
+          <p style="margin:0; color:var(--muted); font-size:14px; line-height:1.5;">
+            Email a few photos, the address/city, and what you want painted (interior/exterior/cabinets/rental).
+            We’ll respond with next steps and a clear estimate.
+          </p>
+
+          <div class="contactLine">
+            <a class="btn btnPrimary" href="tel:+18058951235">Call (805) 895-1235</a>
+            <a class="btn" href="mailto:lmfpaint@gmail.com?subject=Quote%20Request%20-%20Channel%20Islands%20Painting&body=Hi%20Channel%20Islands%20Painting%2C%0A%0AAddress%3A%0ACity%3A%0AProject%20type%3A%20(interior%2Fexterior%2Fcabinets%2Frental)%0AScope%3A%0ATimeline%3A%0A%0APhotos%20attached.%0A%0AThanks!">Email for Quote</a>
+          </div>
+
+          <div class="contactNote">
+            Serving: <strong>Santa Barbara</strong>, <strong>Goleta</strong>, <strong>Carpinteria</strong>, <strong>Montecito</strong>, <strong>Ventura</strong>.
+          </div>
+        </div>
+
+        <div style="position:relative; min-height:320px;">
+          <img src="IMG_2622.jpeg" alt="Project photo" style="width:100%; height:100%; object-fit:cover;">
+          <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.55) 100%);"></div>
+          <div style="position:absolute; left:14px; right:14px; bottom:14px; color:#fff;">
+            <div style="font-weight:900; letter-spacing:.25px; font-size:16px;">Channel Islands Painting</div>
+            <div style="opacity:.92; font-size:12px; margin-top:4px;">Interior & Exterior • Cabinets • Prep • Turnovers</div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+              <a class="btn btnPrimary" href="tel:+18058951235" style="border-color: rgba(255,255,255,.25);">Tap to Call</a>
+              <a class="btn" href="mailto:lmfpaint@gmail.com" style="background:rgba(255,255,255,.90); border-color: rgba(255,255,255,.55);">Tap to Email</a>
             </div>
-            <div>→</div>
-          </a>
-          <div style="height:10px"></div>
-          <a class="line" href="mailto:lmfpaint@gmail.com">
-            <div>
-              <small>Email</small>
-              <b>lmfpaint@gmail.com</b>
-            </div>
-            <div>→</div>
-          </a>
-          <div style="height:10px"></div>
-          <div class="line" style="cursor:default;">
-            <div>
-              <small>Service Area</small>
-              <b>Santa Barbara • Goleta • Carpinteria • Montecito • Ventura</b>
-            </div>
-            <div style="opacity:.6">✓</div>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
   <footer>
-    <div class="wrap fine">
-      <span>© <span id="y"></span> Channel Islands Painting</span>
-      <span>Santa Barbara, CA</span>
+    <div class="container">
+      <div>© <span id="year"></span> <strong>Channel Islands Painting</strong> • Santa Barbara, CA</div>
+      <div style="margin-top:6px;">Call: <a href="tel:+18058951235">(805) 895-1235</a> • Email: <a href="mailto:lmfpaint@gmail.com">lmfpaint@gmail.com</a></div>
     </div>
   </footer>
 
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll reveal animation
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
+
+    els.forEach(el => io.observe(el));
   </script>
 </body>
 </html>
